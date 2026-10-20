@@ -1,0 +1,47 @@
+
+<section class="catalogo">
+
+  <a routerLink="/" class="volver">
+    ← Volver al catálogo
+  </a>
+
+  @if (cargando()) {
+    <p>Cargando información de la película...</p>
+  }
+
+  @if (error()) {
+    <p>{{ error() }}</p>
+  }
+
+  @if (pelicula(); as detalle) {
+
+    <article class="detalle">
+
+      <div class="portada">
+        🎬
+      </div>
+
+      <div class="informacion">
+
+        <h2>{{ detalle.title }}</h2>
+
+        <p class="anio">
+          Año de estreno: {{ detalle.year }}
+        </p>
+
+        <h3>Sinopsis</h3>
+
+        <p>{{ detalle.synopsis }}</p>
+
+        <p class="identificador">
+          ID de la película: {{ detalle.id }}
+        </p>
+
+      </div>
+
+    </article>
+
+  }
+
+</section>
+

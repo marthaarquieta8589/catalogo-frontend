@@ -1,0 +1,173 @@
+
+/* CATÁLOGO DE PELÍCULAS */
+
+.catalogo {
+  min-height: 80vh;
+  padding: 55px 5%;
+  color: #ffffff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 5% 90%, rgba(255, 0, 119, 0.13), transparent 38%),
+    radial-gradient(ellipse at 95% 10%, rgba(218, 165, 32, 0.13), transparent 38%),
+    #08080c;
+}
+
+.catalogo h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  color: #f4ca65;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: 1px;
+  font-family: Georgia, serif;
+}
+
+.subtitulo {
+  color: #bcb7c2;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+/* DISTRIBUCIÓN DE TARJETAS */
+
+.peliculas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* TARJETA */
+
+.tarjeta {
+  position: relative;
+  background: linear-gradient(160deg, #19141c, #09090d 75%);
+  border: 1px solid rgba(238, 190, 87, 0.65);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.65),
+    0 0 15px rgba(255, 0, 119, 0.13);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-9px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(255, 0, 128, 0.42),
+    0 0 12px rgba(255, 208, 97, 0.25);
+}
+
+/* EFECTO DORADO Y ROSA */
+
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, #f5d477, #d49a2d, #ff1988);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ÁREA VISUAL DE LA PELÍCULA */
+
+.portada {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+  background:
+    radial-gradient(circle at center, rgba(255, 188, 62, 0.2), transparent 55%),
+    linear-gradient(135deg, #301421, #11101c 55%, #321427);
+  border-bottom: 1px solid rgba(255, 204, 102, 0.3);
+  text-shadow: 0 0 30px rgba(255, 197, 75, 0.5);
+}
+
+/* INFORMACIÓN */
+
+.informacion {
+  padding: 26px;
+}
+
+.informacion h3 {
+  font-family: Georgia, serif;
+  color: #f7d57c;
+  font-size: 27px;
+  margin: 0 0 15px;
+  letter-spacing: 1px;
+}
+
+.informacion span {
+  display: inline-block;
+  font-size: 13px;
+  color: #f1c15a;
+  background: rgba(255, 192, 65, 0.08);
+  border: 1px solid rgba(255, 192, 65, 0.28);
+  border-radius: 30px;
+  padding: 8px 13px;
+}
+
+.informacion p {
+  color: #c5bec7;
+  font-size: 15px;
+  line-height: 1.8;
+  min-height: 85px;
+  margin: 20px 0;
+}
+
+/* BOTÓN VER DETALLES */
+
+.informacion a {
+  display: block;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #f6cf70;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border: 1px solid #eac15d;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #16100d, #09090b);
+  transition: all 0.3s ease;
+}
+
+.informacion a:hover {
+  background: linear-gradient(135deg, #eac15d, #f7d985);
+  color: #151014;
+  box-shadow: 0 0 20px rgba(255, 193, 71, 0.4);
+}
+
+/* ADAPTACIÓN A PANTALLAS */
+
+@media (max-width: 950px) {
+  .peliculas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogo {
+    padding: 35px 20px;
+  }
+
+  .peliculas {
+    grid-template-columns: 1fr;
+  }
+
+  .portada {
+    height: 210px;
+  }
+
+  .informacion p {
+    min-height: auto;
+  }
+}
+
+

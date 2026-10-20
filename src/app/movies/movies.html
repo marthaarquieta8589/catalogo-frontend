@@ -1,0 +1,47 @@
+
+<section class="catalogo">
+
+  <h2>Explora nuestras películas</h2>
+
+  <p class="subtitulo">
+    Películas registradas en nuestra base de datos.
+  </p>
+
+  <p>Películas recibidas: {{ peliculas().length }}</p>
+
+  @if (error()) {
+    <p>{{ error() }}</p>
+  }
+
+  <div class="peliculas">
+
+    @for (pelicula of peliculas(); track pelicula.id) {
+
+      <article class="tarjeta">
+
+        <div class="portada">🎬</div>
+
+        <div class="informacion">
+
+          <h3>{{ pelicula.title }}</h3>
+
+          <span>Año: {{ pelicula.year }}</span>
+
+          <p>{{ pelicula.synopsis }}</p>
+
+          <a [routerLink]="['/movie', pelicula.id]">
+            Ver detalles →
+          </a>
+
+        </div>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>
+
+
+
