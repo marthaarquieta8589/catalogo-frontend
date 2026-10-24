@@ -1,0 +1,171 @@
+/* PÁGINA DE INICIO */
+
+.home-page {
+  min-height: 100vh;
+  color: #ffffff;
+
+  background-image:
+    linear-gradient(
+      rgba(5, 8, 15, 0.82),
+      rgba(5, 8, 15, 0.94)
+    ),
+    url("/fondo-cine.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ENCABEZADO */
+
+.home-header {
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.35);
+}
+
+.logo-enlace {
+  display: inline-block;
+}
+
+.logo-catalogo {
+  width: 230px;
+  max-width: 100%;
+  height: auto;
+}
+
+.home-header .nav-link {
+  text-decoration: none;
+}
+
+.home-header .nav-link:hover {
+  color: #ffc107 !important;
+}
+
+/* PRESENTACIÓN */
+
+.presentacion {
+  min-height: 520px;
+  padding: 85px 0;
+}
+
+.etiqueta {
+  color: #ffc107;
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.titulo-principal {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.titulo-principal span {
+  display: block;
+  color: #ffc107;
+}
+
+.descripcion {
+  font-size: 19px;
+  line-height: 1.8;
+  color: #f1f1f1;
+}
+
+.descripcion-secundaria {
+  font-size: 15px;
+  color: #c9c9c9;
+  line-height: 1.7;
+}
+
+.boton-explorar {
+  font-weight: 700;
+  padding: 13px 30px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.boton-explorar:hover {
+  transform: translateY(-3px);
+}
+
+/* TARJETAS */
+
+.caracteristicas {
+  padding-bottom: 75px;
+}
+
+.tarjeta-info {
+  padding: 30px 22px;
+  background: rgba(20, 24, 34, 0.88);
+  border: 1px solid rgba(255, 193, 7, 0.22);
+  border-radius: 12px;
+}
+
+.icono-info {
+  display: block;
+  font-size: 38px;
+  color: #ffc107;
+  margin-bottom: 18px;
+}
+
+.tarjeta-info h3 {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.tarjeta-info p {
+  font-size: 15px;
+  color: #d1d1d1;
+  line-height: 1.6;
+}
+
+/* PIE DE PÁGINA */
+
+.home-footer {
+  border-top: 1px solid rgba(255, 193, 7, 0.35);
+  padding: 35px 15px;
+  font-size: 14px;
+  color: #d6d6d6;
+}
+
+.home-footer strong {
+  color: #ffc107;
+}
+
+.texto-final {
+  font-size: 12px;
+  color: #999999;
+}
+
+/* ADAPTACIÓN A DISPOSITIVOS MÓVILES */
+
+@media (max-width: 768px) {
+
+  .home-header {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .logo-catalogo {
+    width: 200px;
+  }
+
+  .presentacion {
+    min-height: auto;
+    padding: 70px 10px;
+  }
+
+  .descripcion {
+    font-size: 16px;
+  }
+
+  .caracteristicas {
+    padding-bottom: 45px;
+  }
+
+  .home-page {
+    background-attachment: scroll;
+  }
+}
