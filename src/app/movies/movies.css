@@ -168,6 +168,14 @@
   .informacion p {
     min-height: auto;
   }
+  /* Tabla responsiva para dispositivos móviles */
+
+@media (max-width: 600px) {
+  .catalogo .table-responsive .table {
+    min-width: 800px;
+  }
+}
+
 }
 
 
