@@ -24,7 +24,16 @@
 
       <article class="tarjeta">
 
-        <div class="portada"></div>
+        
+<div class="portada">
+  <img
+    [src]="'/portadas/' + (pelicula.id === 13 ? 11 : pelicula.id) + '.png'"
+    [alt]="'Portada de ' + pelicula.title"
+    loading="lazy"
+  >
+  
+</div>
+
 
         <div class="informacion">
 

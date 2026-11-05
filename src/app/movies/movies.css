@@ -76,18 +76,36 @@
 
 /* ÁREA VISUAL DE LA PELÍCULA */
 
+
+/* ÁREA VISUAL DE LA PELÍCULA */
+
 .portada {
-  height: 250px;
+  height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 90px;
-  background:
-    radial-gradient(circle at center, rgba(255, 188, 62, 0.2), transparent 55%),
-    linear-gradient(135deg, #301421, #11101c 55%, #321427);
+  overflow: hidden;
+  background: linear-gradient(135deg, #19141c, #09090d);
   border-bottom: 1px solid rgba(255, 204, 102, 0.3);
-  text-shadow: 0 0 30px rgba(255, 197, 75, 0.5);
 }
+
+/* IMAGEN DE LA PORTADA */
+
+.portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 600px) {
+  .portada {
+    height: 300px;
+  }
+}
+
 
 /* INFORMACIÓN */
 
