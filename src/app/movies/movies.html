@@ -18,6 +18,14 @@
     <p>{{ error() }}</p>
   }
 
+<!-- Botón para registrar una película -->
+<div class="d-flex justify-content-end mb-4">
+  <a routerLink="/agregar" class="btn btn-warning fw-bold">
+    <i class="bi bi-plus-circle me-2"></i>
+    Agregar película
+  </a>
+</div>
+
   <div class="peliculas">
 
     @for (pelicula of peliculas(); track pelicula.id) {
@@ -47,6 +55,26 @@
             Ver detalles →
           </a>
 
+<!-- Botón para editar esta película -->
+<div class="mt-3">
+  <a
+    [routerLink]="['/editar', pelicula.id]"
+    class="btn btn-outline-warning btn-sm">
+    <i class="bi bi-pencil-square me-2"></i>
+    Editar película
+  </a>
+</div>
+
+<!-- Botón para eliminar una película -->
+<div class="mt-2">
+  <button
+    type="button"
+    class="btn btn-outline-danger btn-sm"
+    (click)="eliminar(pelicula.id, pelicula.title)">
+    <i class="bi bi-trash3 me-2"></i>
+    Eliminar película
+  </button>
+</div>
         </div>
 
       </article>

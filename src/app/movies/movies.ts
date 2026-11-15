@@ -32,6 +32,38 @@ export class Movies implements OnInit {
     });
 
   }
+
+  // Eliminar una película del catálogo
+  eliminar(id: number, titulo: string) {
+
+    // Pedir confirmación antes de eliminar
+    const confirmar = confirm(
+      `¿Estás segura de eliminar la película "${titulo}"?`
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    // Llamada al servicio DELETE de Laravel
+    this.moviesService.destroy(id).subscribe({
+      next: () => {
+
+        // Actualizar la lista después de eliminar
+        this.peliculas.update(lista =>
+          lista.filter(pelicula => pelicula.id !== id)
+        );
+
+      },
+      error: () => {
+        this.error.set(
+          'No se pudo eliminar la película.'
+        );
+      }
+    });
+
+  }
+
 }
 
 

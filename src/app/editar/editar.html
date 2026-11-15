@@ -1,0 +1,122 @@
+
+<div class="container py-5">
+
+  <div class="card bg-dark text-white border-warning shadow-lg">
+
+    <div class="card-body p-4">
+
+      <h2 class="text-warning mb-4">
+        <i class="bi bi-pencil-square"></i>
+        Editar película
+
+      </h2>
+
+      <p class="text-light">
+        Modifica los datos de la película seleccionada
+        y guarda los cambios en el catálogo.
+      </p>
+
+      <!-- Mensaje mientras se cargan los datos -->
+     @if (cargando()) {
+        <div class="alert alert-info">
+          Cargando información de la película...
+        </div>
+      }
+
+      <!-- Mensaje de error -->
+      @if (mensajeError) {
+        <div class="alert alert-danger">
+          {{ mensajeError }}
+        </div>
+      }
+
+      @if (!cargando() && !mensajeError) {
+
+        <form #formPelicula="ngForm" (ngSubmit)="guardar()">
+
+          <!-- Título -->
+          <div class="mb-3">
+            <label class="form-label">Título</label>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              [(ngModel)]="pelicula.title"
+              required
+            >
+          </div>
+
+          <!-- Año -->
+          <div class="mb-3">
+            <label class="form-label">Año de estreno</label>
+            <input
+              type="number"
+              class="form-control"
+              name="year"
+              [(ngModel)]="pelicula.year"
+              min="1888"
+              max="2100"
+              required
+            >
+          </div>
+
+          <!-- Sinopsis -->
+          <div class="mb-3">
+            <label class="form-label">Sinopsis</label>
+            <textarea
+              class="form-control"
+              name="synopsis"
+              [(ngModel)]="pelicula.synopsis"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Portada -->
+          <div class="mb-4">
+            <label class="form-label">
+              Nombre del archivo de portada
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              name="cover"
+              [(ngModel)]="pelicula.cover"
+              placeholder="Ejemplo: pelicula.jpg"
+            >
+          </div>
+
+          <!-- Guardar -->
+          <button
+            type="submit"
+            class="btn btn-warning me-3"
+            [disabled]="formPelicula.invalid || guardando"
+          >
+            <i class="bi bi-save"></i>
+            {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+          </button>
+
+          <!-- Cancelar -->
+          <a routerLink="/movies" class="btn btn-outline-light">
+            <i class="bi bi-arrow-left"></i>
+            Cancelar
+          </a>
+
+        </form>
+
+      }
+
+      <!-- Regresar al catálogo -->
+      @if (cargando() || mensajeError) {
+        <a routerLink="/movies" class="btn btn-outline-light mt-3">
+          <i class="bi bi-arrow-left"></i>
+          Volver al catálogo
+        </a>
+      }
+
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,105 @@
+
+<div class="container py-5">
+
+  <div class="card bg-dark text-white border-warning shadow-lg">
+
+    <div class="card-body p-4">
+
+      <h2 class="text-warning mb-4">
+        <i class="bi bi-plus-circle"></i>
+        Agregar película
+      </h2>
+
+      <p class="text-light">
+        Completa los siguientes datos para registrar
+        una nueva película en nuestro catálogo.
+      </p>
+
+      <form #formPelicula="ngForm" (ngSubmit)="guardar()">
+
+        <!-- Título -->
+        <div class="mb-3">
+          <label class="form-label">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            [(ngModel)]="pelicula.title"
+            required
+          >
+        </div>
+
+        <!-- Año -->
+        <div class="mb-3">
+          <label class="form-label">Año de estreno</label>
+          <input
+            type="number"
+            class="form-control"
+            name="year"
+            [(ngModel)]="pelicula.year"
+            min="1888"
+            max="2100"
+            required
+          >
+        </div>
+
+        <!-- Sinopsis -->
+        <div class="mb-3">
+          <label class="form-label">Sinopsis</label>
+          <textarea
+            class="form-control"
+            name="synopsis"
+            [(ngModel)]="pelicula.synopsis"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Portada -->
+        <div class="mb-4">
+          <label class="form-label">
+            Nombre del archivo de portada
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="cover"
+            [(ngModel)]="pelicula.cover"
+            placeholder="Ejemplo: pelicula.jpg"
+          >
+        </div>
+
+        <!-- Mensaje de error -->
+        @if (mensajeError) {
+          <div class="alert alert-danger">
+            {{ mensajeError }}
+          </div>
+        }
+
+        <!-- Botones -->
+        <div class="d-flex gap-3 flex-wrap">
+
+          <button
+            type="submit"
+            class="btn btn-warning"
+            [disabled]="formPelicula.invalid || guardando"
+          >
+            <i class="bi bi-save"></i>
+            {{ guardando ? 'Guardando...' : 'Guardar película' }}
+          </button>
+
+          <a routerLink="/movies" class="btn btn-outline-light">
+  <i class="bi bi-arrow-left"></i>
+  Cancelar
+</a>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
