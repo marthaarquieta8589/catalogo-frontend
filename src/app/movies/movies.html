@@ -34,18 +34,30 @@
 
         
 <div class="portada">
-  <img
-    [src]="'/portadas/' + (pelicula.id === 13 ? 11 : pelicula.id) + '.png'"
-    [alt]="'Portada de ' + pelicula.title"
-    loading="lazy"
-  >
+  
+<img
+  [src]="obtenerPortada(pelicula)"
+  [alt]="'Portada de ' + pelicula.title"
+  loading="lazy"
+>
+
   
 </div>
 
 
         <div class="informacion">
 
-          <h3>{{ pelicula.title }}</h3>
+         
+<h3>
+  <a
+    [routerLink]="['/movie', pelicula.id]"
+    class="text-decoration-none"
+    style="color: inherit;"
+  >
+    {{ pelicula.title }}
+  </a>
+</h3>
+
 
           <span>Año: {{ pelicula.year }}</span>
 
@@ -105,7 +117,18 @@
         @for (pelicula of peliculas(); track pelicula.id) {
           <tr>
             <td>{{ pelicula.id }}</td>
-            <td>{{ pelicula.title }}</td>
+            
+        
+<td>
+  <a
+    [routerLink]="['/movie', pelicula.id]"
+    class="text-warning text-decoration-none fw-semibold"
+  >
+    {{ pelicula.title }}
+  </a>
+</td>
+
+
             <td>{{ pelicula.year }}</td>
             <td>{{ pelicula.synopsis }}</td>
             <td>

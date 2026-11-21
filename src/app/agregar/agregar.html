@@ -56,18 +56,31 @@
         </div>
 
         <!-- Portada -->
-        <div class="mb-4">
-          <label class="form-label">
-            Nombre del archivo de portada
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="cover"
-            [(ngModel)]="pelicula.cover"
-            placeholder="Ejemplo: pelicula.jpg"
-          >
-        </div>
+        
+<!-- Portada de la película -->
+<div class="mb-4">
+
+  <label for="cover" class="form-label">
+    Liga (URL) o nombre del archivo de portada
+  </label>
+
+  <input
+    id="cover"
+    type="text"
+    class="form-control"
+    name="cover"
+    [(ngModel)]="pelicula.cover"
+    placeholder="https://ejemplo.com/portada.jpg"
+    required
+  >
+
+  <div class="form-text text-light mt-2">
+    Introduce la dirección de una imagen disponible en
+    internet o el nombre de un archivo de portada local.
+  </div>
+
+</div>
+
 
         <!-- Mensaje de error -->
         @if (mensajeError) {

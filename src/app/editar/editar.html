@@ -73,18 +73,53 @@
           </div>
 
           <!-- Portada -->
-          <div class="mb-4">
-            <label class="form-label">
-              Nombre del archivo de portada
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              name="cover"
-              [(ngModel)]="pelicula.cover"
-              placeholder="Ejemplo: pelicula.jpg"
-            >
-          </div>
+          
+<!-- Portada de la película -->
+<div class="mb-4">
+
+  <label for="cover" class="form-label">
+    Liga (URL) o nombre del archivo de portada
+  </label>
+
+  <input
+    id="cover"
+    type="text"
+    class="form-control"
+    name="cover"
+    [(ngModel)]="pelicula.cover"
+    placeholder="https://ejemplo.com/portada.jpg"
+    required
+  >
+
+  <div class="form-text text-light mt-2">
+    Puedes introducir una dirección URL de imagen
+    o el nombre de una portada guardada en el proyecto.
+  </div>
+
+  <!-- Vista previa de imágenes mediante URL -->
+  @if (
+    pelicula.cover &&
+    (pelicula.cover.startsWith('https://') ||
+     pelicula.cover.startsWith('http://'))
+  ) {
+
+    <div class="mt-3">
+      <p class="text-warning fw-semibold">
+        Vista previa de la portada
+      </p>
+
+      <img
+        [src]="pelicula.cover"
+        [alt]="'Portada de ' + pelicula.title"
+        class="img-fluid rounded-3 shadow"
+        style="max-width: 180px; max-height: 270px; object-fit: contain;"
+      >
+    </div>
+
+  }
+
+</div>
+
 
           <!-- Guardar -->
           <button

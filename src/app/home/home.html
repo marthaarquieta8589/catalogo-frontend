@@ -64,34 +64,122 @@
 
     </section>
 
-    <!-- CARACTERÍSTICAS -->
-    <section class="caracteristicas row g-4 text-center">
+    
+<!-- CARRUSEL DE PELÍCULAS DESTACADAS -->
+<section class="destacadas">
 
-      <div class="col-12 col-md-4">
-        <div class="tarjeta-info h-100">
-          <i class="bi bi-collection-play icono-info"></i>
-          <h3>Explora</h3>
-          <p>Consulta las películas disponibles en nuestro catálogo.</p>
-        </div>
-      </div>
+  <div class="destacadas-encabezado">
 
-      <div class="col-12 col-md-4">
-        <div class="tarjeta-info h-100">
-          <i class="bi bi-info-circle icono-info"></i>
-          <h3>Descubre</h3>
-          <p>Conoce los detalles de cada película seleccionada.</p>
-        </div>
-      </div>
+    <div>
+      <span class="etiqueta">
+        <i class="bi bi-stars me-2"></i>
+        NUESTRA COLECCIÓN
+      </span>
 
-      <div class="col-12 col-md-4">
-        <div class="tarjeta-info h-100">
-          <i class="bi bi-phone icono-info"></i>
-          <h3>Navega</h3>
-          <p>Disfruta de un diseño adaptable a computadoras y móviles.</p>
-        </div>
-      </div>
+      <h2 class="destacadas-titulo">
+        Películas destacadas
+      </h2>
 
-    </section>
+      <p class="destacadas-descripcion">
+        Explora nuestras historias y selecciona una
+        película para conocer todos sus detalles.
+      </p>
+    </div>
+
+    <!-- Flechas del carrusel -->
+    <div class="controles-carrusel">
+
+      <button
+        type="button"
+        class="flecha-carrusel"
+        aria-label="Ver películas anteriores"
+        (click)="desplazarCarrusel(-1)"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      <button
+        type="button"
+        class="flecha-carrusel"
+        aria-label="Ver películas siguientes"
+        (click)="desplazarCarrusel(1)"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+  @if (cargando()) {
+    <p class="text-light">
+      Cargando películas destacadas...
+    </p>
+  }
+
+  @if (error()) {
+    <div class="alert alert-warning">
+      {{ error() }}
+    </div>
+  }
+
+  @if (peliculas().length > 0) {
+
+    <!-- Recuadro desplazable -->
+    <div class="carrusel-peliculas" #carrusel>
+
+      @for (pelicula of peliculas(); track pelicula.id) {
+
+        <a
+          [routerLink]="['/movie', pelicula.id]"
+          class="pelicula-destacada"
+          [attr.aria-label]="'Ver detalles de ' + pelicula.title"
+        >
+
+          <div class="destacada-imagen">
+            <img
+              [src]="obtenerPortada(pelicula)"
+              [alt]="'Portada de ' + pelicula.title"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="destacada-informacion">
+
+            <h3>{{ pelicula.title }}</h3>
+
+            <span class="destacada-anio">
+              <i class="bi bi-calendar3 me-1"></i>
+              {{ pelicula.year }}
+            </span>
+
+            <span class="destacada-enlace">
+              Ver detalles
+              <i class="bi bi-arrow-right"></i>
+            </span>
+
+          </div>
+
+        </a>
+
+      }
+
+    </div>
+
+  }
+
+  <div class="destacadas-final text-center">
+    <a
+      routerLink="/movies"
+      class="btn btn-outline-warning"
+    >
+      <i class="bi bi-collection-play me-2"></i>
+      Ver catálogo completo
+    </a>
+  </div>
+
+</section>
+
 
     <!-- PIE DE PÁGINA -->
     <footer class="home-footer text-center">

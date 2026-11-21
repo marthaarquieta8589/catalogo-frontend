@@ -1,48 +1,104 @@
+<section class="catalogo container py-5">
 
-<section class="catalogo">
-
-  <a routerLink="/movies" class="volver">
-  ← Volver al catálogo
-</a>
-
+  <a routerLink="/movies" class="btn btn-outline-warning mb-4">
+    ← Volver al catálogo
+  </a>
 
   @if (cargando()) {
-    <p>Cargando información de la película...</p>
+    <div class="alert alert-info">
+      Cargando información de la película...
+    </div>
   }
 
   @if (error()) {
-    <p>{{ error() }}</p>
+    <div class="alert alert-danger">
+      {{ error() }}
+    </div>
   }
 
   @if (pelicula(); as detalle) {
 
-    <article class="detalle">
+    <article class="card bg-dark text-white border-warning shadow-lg rounded-4">
 
-      <div class="portada">
-        🎬
-      </div>
+      <div class="card-body p-4 p-md-5">
 
-      <div class="informacion">
+        <div class="row g-4 align-items-center">
 
-        <h2>{{ detalle.title }}</h2>
+          <!-- Portada de la película -->
+          <div class="col-12 col-md-4 text-center">
 
-        <p class="anio">
-          Año de estreno: {{ detalle.year }}
-        </p>
+            @if (obtenerPortada(detalle) && !imagenError()) {
+              <img
+                [src]="obtenerPortada(detalle)"
+                [alt]="'Portada de ' + detalle.title"
+                class="img-fluid rounded-3 shadow"
+                style="max-height: 440px; object-fit: contain;"
+                (error)="imagenError.set(true)"
+              >
+            } @else {
+              <div class="display-1">🎬</div>
+              <p class="text-secondary">Portada no disponible</p>
+            }
 
-        <h3>Sinopsis</h3>
+          </div>
 
-        <p>{{ detalle.synopsis }}</p>
+          <!-- Información de la película -->
+          <div class="col-12 col-md-8">
 
-        <p class="identificador">
-          ID de la película: {{ detalle.id }}
-        </p>
+            <h1 class="text-warning fw-bold mb-3">
+              {{ detalle.title }}
+            </h1>
+
+            <p class="mb-4">
+              <span class="badge bg-warning text-dark">
+                Año de estreno: {{ detalle.year }}
+              </span>
+            </p>
+
+            <h3 class="text-warning">Sinopsis</h3>
+
+            <p class="text-light mb-4">
+              {{ detalle.synopsis }}
+            </p>
+
+            <p class="text-secondary small">
+              ID de la película: {{ detalle.id }}
+            </p>
+
+            <hr class="border-warning my-4">
+
+            <!-- Acciones -->
+            <div class="d-flex flex-wrap gap-3">
+
+              <a
+                [routerLink]="['/editar', detalle.id]"
+                class="btn btn-warning fw-semibold"
+              >
+                Editar película
+              </a>
+
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                [disabled]="eliminando()"
+                (click)="eliminar(detalle)"
+              >
+                {{ eliminando() ? 'Eliminando...' : 'Eliminar película' }}
+              </button>
+
+              <a routerLink="/movies" class="btn btn-outline-light">
+                Volver al catálogo
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
     </article>
-
   }
 
 </section>
-
